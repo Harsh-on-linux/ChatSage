@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { cn } from "@/lib/utils"
 
 const navItems = [
   { label: 'Home', href: '/' },
@@ -15,8 +16,8 @@ const NavItems = () => {
   return (
     <nav className="flex items-center gap-4">
       {navItems.map(({ label, href }) => (
-        <Link href={href} key={label}>
-          <p>{label}</p>
+        <Link href={href} key={label} className={cn(pathname === href)}>
+          <p className="relative before:absolute before:bottom-0 before:left-0 before:w-0 hover:before:w-full before:h-0.5 before:bg-current before:transition-all before:duration-300">{label}</p>
         </Link>
       ))}
     </nav>

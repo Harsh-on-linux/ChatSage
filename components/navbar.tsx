@@ -17,7 +17,7 @@ const Navbar = () => {
       </Link>
       <div className="flex items-center gap-8">
         <NavItems />
-        <p>Sign In</p>
+        <p className="relative before:absolute before:bottom-0 before:left-0 before:w-0 hover:before:w-full before:h-0.5 before:bg-current before:transition-all before:duration-300">Sign In</p>
       </div>
     </nav>
   );
