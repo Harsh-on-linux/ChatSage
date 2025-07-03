@@ -1,9 +1,9 @@
-import CompanionCard from "@/components/CompanionCard"
+import CompanionCard from "@/components/CompanionCard";
 import CompanionsList from "@/components/CompanionsList";
 import Cta from "@/components/CTA";
 import { recentSessions } from "@/constants";
 
-const Page = () => {
+const Page = async () => {
   return (
     <main>
       <h1 className="text-2xl underline">Welcome to Code Sage!</h1>
@@ -36,7 +36,6 @@ const Page = () => {
 
       <section className="home-section">
         <CompanionsList
-          title="Recently completed Sessions"
           companions={recentSessions}
           classNames="w-2/3 max-lg:w-full"
         />
