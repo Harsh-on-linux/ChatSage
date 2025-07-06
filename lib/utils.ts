@@ -8,11 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const getSubjectColor = (subject: string) => {
-  const colors = subjectsColors[subject as keyof typeof subjectsColors];
-  if (!colors) return "#E5E5E5"; // fallback color
-
-  const randomIndex = Math.floor(Math.random() * colors.length);
-  return colors[randomIndex];
+  return subjectsColors[subject as keyof typeof subjectsColors];
 };
 
 
