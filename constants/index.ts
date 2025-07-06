@@ -7,13 +7,14 @@ export const subjects = [
   "economics",
 ];
 
+
 export const subjectsColors = {
-  science: "#E5D0FF",
-  maths: "#FFDA6E",
-  language: "#BDE7FF",
-  coding: "#FFC8E4",
-  history: "#FFECC8",
-  economics: "#C8FFDF",
+  science: ["#E5D0FF", "#D0E5FF", "#FFD0E5", "#E5FFD0"], // purple, light blue, pink, light green
+  maths: ["#FFDA6E", "#FFB3BA", "#B3E5FC", "#C8E6C9"], // yellow, coral, sky blue, mint
+  language: ["#BDE7FF", "#FFCCCB", "#E1BEE7", "#F0E68C"], // light blue, peach, lavender, khaki
+  coding: ["#FFC8E4", "#C8E6C9", "#FFE0B2", "#E1BEE7"], // pink, mint, peach, lavender
+  history: ["#FFECC8", "#FFCCCB", "#E5D0FF", "#C8E6C9"], // cream, coral, purple, mint
+  economics: ["#C8FFDF", "#BDE7FF", "#FFE0B2", "#E1BEE7"], // mint, light blue, peach, lavender
 };
 
 export const voices = {

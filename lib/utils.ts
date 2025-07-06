@@ -1,63 +1,78 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
-import { subjectsColors, /* voices */ } from "@/constants";
-// import { CreateAssistantDTO } from "@vapi-ai/web/dist/api";
+import { subjectsColors, voices } from "@/constants";
+import { CreateAssistantDTO } from "@vapi-ai/web/dist/api";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
 export const getSubjectColor = (subject: string) => {
-  return subjectsColors[subject as keyof typeof subjectsColors];
+  const colors = subjectsColors[subject as keyof typeof subjectsColors];
+  if (!colors) return "#E5E5E5"; // fallback color
+
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  return colors[randomIndex];
 };
 
-// export const configureAssistant = (voice: string, style: string) => {
-//   const voiceId =
-//     voices[voice as keyof typeof voices][
-//       style as keyof (typeof voices)[keyof typeof voices]
-//     ] || "sarah";
 
-//   const vapiAssistant: CreateAssistantDTO = {
-//     name: "Companion",
-//     firstMessage:
-//       "Hello, let's start the session. Today we'll be talking about {{topic}}.",
-//     transcriber: {
-//       provider: "deepgram",
-//       model: "nova-3",
-//       language: "en",
-//     },
-//     voice: {
-//       provider: "11labs",
-//       voiceId: voiceId,
-//       stability: 0.4,
-//       similarityBoost: 0.8,
-//       speed: 0.9,
-//       style: 0.5,
-//       useSpeakerBoost: true,
-//     },
-//     model: {
-//       provider: "openai",
-//       model: "gpt-4",
-//       messages: [
-//         {
-//           role: "system",
-//           content: `You are a highly knowledgeable tutor teaching a real-time voice session with a student. Your goal is to teach the student about the topic and subject.
 
-//                     Tutor Guidelines:
-//                     Stick to the given topic - {{ topic }} and subject - {{ subject }} and teach the student about it.
-//                     Keep the conversation flowing smoothly while maintaining control.
-//                     From time to time make sure that the student is following you and understands you.
-//                     Break down the topic into smaller parts and teach the student one part at a time.
-//                     Keep your style of conversation {{ style }}.
-//                     Keep your responses short, like in a real voice conversation.
-//                     Do not include any special characters in your responses - this is a voice conversation.
-//               `,
-//         },
-//       ],
-//     },
-//     clientMessages: [],
-//     serverMessages: [],
-//   };
-//   return vapiAssistant;
-// };
+export const configureAssistant = (voice: string, style: string) => {
+  const voiceId =
+    voices[voice as keyof typeof voices]?.[
+    style as keyof (typeof voices)[keyof typeof voices]
+    ] || "sarah";
+
+  const vapiAssistant: CreateAssistantDTO = {
+    name: "Companion",
+    firstMessage:
+      "Hi {{userName}}! I'm excited to learn with you today. Let's dive into {{topic}} — we’ll go step by step. Ready to begin? also do tell which language u would prefer hindi or english?",
+
+    transcriber: {
+      provider: "deepgram",
+      model: "nova-2",
+      language: "hi", // or "en" for more accurate English detection
+      smartFormat: false,
+    },
+
+    voice: {
+      provider: "11labs",
+      voiceId: voiceId,
+      stability: 0.3,
+      similarityBoost: 0.6,
+      speed: 1.1,
+      style: 0.4,
+      useSpeakerBoost: false,
+    },
+
+    model: {
+      provider: "openai",
+      model: "gpt-3.5-turbo-1106",
+      messages: [
+        {
+          role: "system",
+          content: `
+You are a knowledgeable tutor teaching a real-time voice session with a student named {{userName}}. 
+Teach the topic - {{topic}} from the subject - {{subject}}.
+
+Guidelines:
+- Speak clearly in English. Use simple phrasing and natural tone.
+- Break down the topic into smaller parts and teach step by step.
+- Ask questions to confirm understanding.
+- Keep responses short and clear.
+- Keep your style of conversation {{style}}.
+- Do not include special characters.
+        `.trim(),
+        },
+      ],
+      temperature: 0.7,
+      maxTokens: 100,
+    },
+
+    clientMessages: [],
+    serverMessages: [],
+  };
+
+  return vapiAssistant;
+};
 
