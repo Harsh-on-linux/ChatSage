@@ -22,12 +22,12 @@ export const configureAssistant = (voice: string, style: string) => {
   const vapiAssistant: CreateAssistantDTO = {
     name: "Companion",
     firstMessage:
-      "Hi {{userName}}! I'm excited to learn with you today. Let's dive into {{topic}} — we’ll go step by step. Ready to begin? also do tell which language u would prefer hindi or english?",
+      "Hi {{userName}}! I'm excited to learn with you today. Let's dive into {{topic}} we will go step by step through it, so shall we start?",
 
     transcriber: {
       provider: "deepgram",
       model: "nova-2",
-      language: "hi", // or "en" for more accurate English detection
+      language: "en", // or "en" for more accurate English detection
       smartFormat: false,
     },
 
