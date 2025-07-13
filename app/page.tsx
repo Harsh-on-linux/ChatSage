@@ -625,11 +625,11 @@ const LandingPage = () => {
               </motion.span>
               for learners worldwide
             </motion.p>
-            <a
-              href="https://www.linkedin.com/in/harshkumar-yadav-b10935371"
+
+            <a href="https://www.linkedin.com/in/harshkumar-yadav-b10935371"
               target="_blank"
               rel="noopener noreferrer"
-            >
+              className="text-sm font-medium text-black hover:text-rose-900 underline underline-offset-4 hover:underline-offset-2 transition-all duration-200">
               By Harshkumar Yadav
             </a>
           </motion.div>
