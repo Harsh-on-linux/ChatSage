@@ -61,8 +61,12 @@ const CompanionCard = ({
       </div>
 
       <Link href={`/companions/${id}`} className="w-full">
-        <button className="btn-primary w-full justify-center">
-          Launch Lesson
+        <button class="btn-primary w-full justify-center relative overflow-hidden group transition-colors duration-300">
+  <span class="relative z-10 transition-colors duration-300 group-hover:text-black">
+    Click Me
+  </span>
+          <span
+              className="absolute inset-0 bg-white opacity-100 scale-x-0 origin-right transition-transform duration-300 group-hover:scale-x-100"></span>
         </button>
       </Link>
     </article>

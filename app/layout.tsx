@@ -20,15 +20,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-
     <html lang="en">
       <body className={`${bricolage.variable} antialiased`}>
-        <ClerkProvider>
+        <ClerkProvider
+          signInFallbackRedirectUrl="/dashboard"
+          signUpFallbackRedirectUrl="/dashboard"
+        >
           <Navbar />
           {children}
         </ClerkProvider>
       </body>
     </html>
-
   );
 }
